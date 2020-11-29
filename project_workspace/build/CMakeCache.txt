@@ -386,6 +386,12 @@ message_runtime_DIR:PATH=/opt/ros/kinetic/share/message_runtime/cmake
 //The directory containing a CMake configuration file for moveit_msgs.
 moveit_msgs_DIR:PATH=/opt/ros/kinetic/share/moveit_msgs/cmake
 
+//Value Computed by CMake
+obj_det_BINARY_DIR:STATIC=/home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build/obj_det
+
+//Value Computed by CMake
+obj_det_SOURCE_DIR:STATIC=/home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/src/obj_det
+
 //The directory containing a CMake configuration file for object_recognition_msgs.
 object_recognition_msgs_DIR:PATH=/opt/ros/kinetic/share/object_recognition_msgs/cmake
 
@@ -551,7 +557,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=5
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=6
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

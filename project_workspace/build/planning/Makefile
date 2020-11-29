@@ -56,29 +56,6 @@ CMAKE_BINARY_DIR = /home/akashvelu/ros_workspaces/eecs106_final_project/project_
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target test
 test:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
@@ -89,17 +66,6 @@ test:
 test/fast: test
 
 .PHONY : test/fast
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: install/strip
-
-.PHONY : install/strip/fast
 
 # Special rule for the target install/local
 install/local: preinstall
@@ -112,6 +78,29 @@ install/local/fast: install/local
 
 .PHONY : install/local/fast
 
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
 # Special rule for the target list_install_components
 list_install_components:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
@@ -121,6 +110,17 @@ list_install_components:
 list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: install/strip
+
+.PHONY : install/strip/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -166,351 +166,6 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-planning/CMakeFiles/tf2_msgs_generate_messages_py.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/tf2_msgs_generate_messages_py.dir/rule
-.PHONY : planning/CMakeFiles/tf2_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-tf2_msgs_generate_messages_py: planning/CMakeFiles/tf2_msgs_generate_messages_py.dir/rule
-
-.PHONY : tf2_msgs_generate_messages_py
-
-# fast build rule for target.
-tf2_msgs_generate_messages_py/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/tf2_msgs_generate_messages_py.dir/build.make planning/CMakeFiles/tf2_msgs_generate_messages_py.dir/build
-.PHONY : tf2_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-planning/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/rule
-.PHONY : planning/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-tf2_msgs_generate_messages_nodejs: planning/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : tf2_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-tf2_msgs_generate_messages_nodejs/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/build.make planning/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/build
-.PHONY : tf2_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-planning/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/rule
-.PHONY : planning/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-tf2_msgs_generate_messages_lisp: planning/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : tf2_msgs_generate_messages_lisp
-
-# fast build rule for target.
-tf2_msgs_generate_messages_lisp/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/build.make planning/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/build
-.PHONY : tf2_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-planning/CMakeFiles/tf2_msgs_generate_messages_eus.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/tf2_msgs_generate_messages_eus.dir/rule
-.PHONY : planning/CMakeFiles/tf2_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-tf2_msgs_generate_messages_eus: planning/CMakeFiles/tf2_msgs_generate_messages_eus.dir/rule
-
-.PHONY : tf2_msgs_generate_messages_eus
-
-# fast build rule for target.
-tf2_msgs_generate_messages_eus/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/tf2_msgs_generate_messages_eus.dir/build.make planning/CMakeFiles/tf2_msgs_generate_messages_eus.dir/build
-.PHONY : tf2_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-planning/CMakeFiles/intera_motion_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/intera_motion_msgs_generate_messages_nodejs.dir/rule
-.PHONY : planning/CMakeFiles/intera_motion_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-intera_motion_msgs_generate_messages_nodejs: planning/CMakeFiles/intera_motion_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : intera_motion_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-intera_motion_msgs_generate_messages_nodejs/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/intera_motion_msgs_generate_messages_nodejs.dir/build.make planning/CMakeFiles/intera_motion_msgs_generate_messages_nodejs.dir/build
-.PHONY : intera_motion_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-planning/CMakeFiles/intera_motion_msgs_generate_messages_lisp.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/intera_motion_msgs_generate_messages_lisp.dir/rule
-.PHONY : planning/CMakeFiles/intera_motion_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-intera_motion_msgs_generate_messages_lisp: planning/CMakeFiles/intera_motion_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : intera_motion_msgs_generate_messages_lisp
-
-# fast build rule for target.
-intera_motion_msgs_generate_messages_lisp/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/intera_motion_msgs_generate_messages_lisp.dir/build.make planning/CMakeFiles/intera_motion_msgs_generate_messages_lisp.dir/build
-.PHONY : intera_motion_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-planning/CMakeFiles/baxter_interface_gencfg.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/baxter_interface_gencfg.dir/rule
-.PHONY : planning/CMakeFiles/baxter_interface_gencfg.dir/rule
-
-# Convenience name for target.
-baxter_interface_gencfg: planning/CMakeFiles/baxter_interface_gencfg.dir/rule
-
-.PHONY : baxter_interface_gencfg
-
-# fast build rule for target.
-baxter_interface_gencfg/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/baxter_interface_gencfg.dir/build.make planning/CMakeFiles/baxter_interface_gencfg.dir/build
-.PHONY : baxter_interface_gencfg/fast
-
-# Convenience name for target.
-planning/CMakeFiles/control_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/control_msgs_generate_messages_nodejs.dir/rule
-.PHONY : planning/CMakeFiles/control_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-control_msgs_generate_messages_nodejs: planning/CMakeFiles/control_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : control_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-control_msgs_generate_messages_nodejs/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/control_msgs_generate_messages_nodejs.dir/build.make planning/CMakeFiles/control_msgs_generate_messages_nodejs.dir/build
-.PHONY : control_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-planning/CMakeFiles/intera_interface_gencfg.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/intera_interface_gencfg.dir/rule
-.PHONY : planning/CMakeFiles/intera_interface_gencfg.dir/rule
-
-# Convenience name for target.
-intera_interface_gencfg: planning/CMakeFiles/intera_interface_gencfg.dir/rule
-
-.PHONY : intera_interface_gencfg
-
-# fast build rule for target.
-intera_interface_gencfg/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/intera_interface_gencfg.dir/build.make planning/CMakeFiles/intera_interface_gencfg.dir/build
-.PHONY : intera_interface_gencfg/fast
-
-# Convenience name for target.
-planning/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-.PHONY : planning/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_lisp: planning/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_lisp
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_lisp/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make planning/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-planning/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-.PHONY : planning/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_py: planning/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_py
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_py/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make planning/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
-.PHONY : rosgraph_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-planning/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-.PHONY : planning/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_cpp: planning/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_cpp
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_cpp/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make planning/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-planning/CMakeFiles/control_msgs_generate_messages_eus.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/control_msgs_generate_messages_eus.dir/rule
-.PHONY : planning/CMakeFiles/control_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-control_msgs_generate_messages_eus: planning/CMakeFiles/control_msgs_generate_messages_eus.dir/rule
-
-.PHONY : control_msgs_generate_messages_eus
-
-# fast build rule for target.
-control_msgs_generate_messages_eus/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/control_msgs_generate_messages_eus.dir/build.make planning/CMakeFiles/control_msgs_generate_messages_eus.dir/build
-.PHONY : control_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-planning/CMakeFiles/roscpp_generate_messages_py.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/roscpp_generate_messages_py.dir/rule
-.PHONY : planning/CMakeFiles/roscpp_generate_messages_py.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_py: planning/CMakeFiles/roscpp_generate_messages_py.dir/rule
-
-.PHONY : roscpp_generate_messages_py
-
-# fast build rule for target.
-roscpp_generate_messages_py/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/roscpp_generate_messages_py.dir/build.make planning/CMakeFiles/roscpp_generate_messages_py.dir/build
-.PHONY : roscpp_generate_messages_py/fast
-
-# Convenience name for target.
-planning/CMakeFiles/dynamic_reconfigure_generate_messages_py.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/dynamic_reconfigure_generate_messages_py.dir/rule
-.PHONY : planning/CMakeFiles/dynamic_reconfigure_generate_messages_py.dir/rule
-
-# Convenience name for target.
-dynamic_reconfigure_generate_messages_py: planning/CMakeFiles/dynamic_reconfigure_generate_messages_py.dir/rule
-
-.PHONY : dynamic_reconfigure_generate_messages_py
-
-# fast build rule for target.
-dynamic_reconfigure_generate_messages_py/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/dynamic_reconfigure_generate_messages_py.dir/build.make planning/CMakeFiles/dynamic_reconfigure_generate_messages_py.dir/build
-.PHONY : dynamic_reconfigure_generate_messages_py/fast
-
-# Convenience name for target.
-planning/CMakeFiles/actionlib_generate_messages_lisp.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/actionlib_generate_messages_lisp.dir/rule
-.PHONY : planning/CMakeFiles/actionlib_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-actionlib_generate_messages_lisp: planning/CMakeFiles/actionlib_generate_messages_lisp.dir/rule
-
-.PHONY : actionlib_generate_messages_lisp
-
-# fast build rule for target.
-actionlib_generate_messages_lisp/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/actionlib_generate_messages_lisp.dir/build.make planning/CMakeFiles/actionlib_generate_messages_lisp.dir/build
-.PHONY : actionlib_generate_messages_lisp/fast
-
-# Convenience name for target.
-planning/CMakeFiles/actionlib_generate_messages_nodejs.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/actionlib_generate_messages_nodejs.dir/rule
-.PHONY : planning/CMakeFiles/actionlib_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-actionlib_generate_messages_nodejs: planning/CMakeFiles/actionlib_generate_messages_nodejs.dir/rule
-
-.PHONY : actionlib_generate_messages_nodejs
-
-# fast build rule for target.
-actionlib_generate_messages_nodejs/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/actionlib_generate_messages_nodejs.dir/build.make planning/CMakeFiles/actionlib_generate_messages_nodejs.dir/build
-.PHONY : actionlib_generate_messages_nodejs/fast
-
-# Convenience name for target.
-planning/CMakeFiles/control_msgs_generate_messages_lisp.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/control_msgs_generate_messages_lisp.dir/rule
-.PHONY : planning/CMakeFiles/control_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-control_msgs_generate_messages_lisp: planning/CMakeFiles/control_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : control_msgs_generate_messages_lisp
-
-# fast build rule for target.
-control_msgs_generate_messages_lisp/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/control_msgs_generate_messages_lisp.dir/build.make planning/CMakeFiles/control_msgs_generate_messages_lisp.dir/build
-.PHONY : control_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-planning/CMakeFiles/roscpp_generate_messages_lisp.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-.PHONY : planning/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_lisp: planning/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-
-.PHONY : roscpp_generate_messages_lisp
-
-# fast build rule for target.
-roscpp_generate_messages_lisp/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make planning/CMakeFiles/roscpp_generate_messages_lisp.dir/build
-.PHONY : roscpp_generate_messages_lisp/fast
-
-# Convenience name for target.
-planning/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/rule
-.PHONY : planning/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-dynamic_reconfigure_generate_messages_lisp: planning/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/rule
-
-.PHONY : dynamic_reconfigure_generate_messages_lisp
-
-# fast build rule for target.
-dynamic_reconfigure_generate_messages_lisp/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/build.make planning/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/build
-.PHONY : dynamic_reconfigure_generate_messages_lisp/fast
-
-# Convenience name for target.
-planning/CMakeFiles/actionlib_generate_messages_cpp.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/actionlib_generate_messages_cpp.dir/rule
-.PHONY : planning/CMakeFiles/actionlib_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-actionlib_generate_messages_cpp: planning/CMakeFiles/actionlib_generate_messages_cpp.dir/rule
-
-.PHONY : actionlib_generate_messages_cpp
-
-# fast build rule for target.
-actionlib_generate_messages_cpp/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/actionlib_generate_messages_cpp.dir/build.make planning/CMakeFiles/actionlib_generate_messages_cpp.dir/build
-.PHONY : actionlib_generate_messages_cpp/fast
-
-# Convenience name for target.
-planning/CMakeFiles/control_msgs_generate_messages_cpp.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/control_msgs_generate_messages_cpp.dir/rule
-.PHONY : planning/CMakeFiles/control_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-control_msgs_generate_messages_cpp: planning/CMakeFiles/control_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : control_msgs_generate_messages_cpp
-
-# fast build rule for target.
-control_msgs_generate_messages_cpp/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/control_msgs_generate_messages_cpp.dir/build.make planning/CMakeFiles/control_msgs_generate_messages_cpp.dir/build
-.PHONY : control_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-planning/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
-.PHONY : planning/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_eus: planning/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_eus
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_eus/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make planning/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
-.PHONY : rosgraph_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
 planning/CMakeFiles/intera_motion_msgs_generate_messages_py.dir/rule:
 	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/intera_motion_msgs_generate_messages_py.dir/rule
 .PHONY : planning/CMakeFiles/intera_motion_msgs_generate_messages_py.dir/rule
@@ -524,336 +179,6 @@ intera_motion_msgs_generate_messages_py: planning/CMakeFiles/intera_motion_msgs_
 intera_motion_msgs_generate_messages_py/fast:
 	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/intera_motion_msgs_generate_messages_py.dir/build.make planning/CMakeFiles/intera_motion_msgs_generate_messages_py.dir/build
 .PHONY : intera_motion_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-planning/CMakeFiles/baxter_core_msgs_generate_messages_eus.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/baxter_core_msgs_generate_messages_eus.dir/rule
-.PHONY : planning/CMakeFiles/baxter_core_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-baxter_core_msgs_generate_messages_eus: planning/CMakeFiles/baxter_core_msgs_generate_messages_eus.dir/rule
-
-.PHONY : baxter_core_msgs_generate_messages_eus
-
-# fast build rule for target.
-baxter_core_msgs_generate_messages_eus/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/baxter_core_msgs_generate_messages_eus.dir/build.make planning/CMakeFiles/baxter_core_msgs_generate_messages_eus.dir/build
-.PHONY : baxter_core_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-planning/CMakeFiles/actionlib_generate_messages_py.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/actionlib_generate_messages_py.dir/rule
-.PHONY : planning/CMakeFiles/actionlib_generate_messages_py.dir/rule
-
-# Convenience name for target.
-actionlib_generate_messages_py: planning/CMakeFiles/actionlib_generate_messages_py.dir/rule
-
-.PHONY : actionlib_generate_messages_py
-
-# fast build rule for target.
-actionlib_generate_messages_py/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/actionlib_generate_messages_py.dir/build.make planning/CMakeFiles/actionlib_generate_messages_py.dir/build
-.PHONY : actionlib_generate_messages_py/fast
-
-# Convenience name for target.
-planning/CMakeFiles/roscpp_generate_messages_eus.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/roscpp_generate_messages_eus.dir/rule
-.PHONY : planning/CMakeFiles/roscpp_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_eus: planning/CMakeFiles/roscpp_generate_messages_eus.dir/rule
-
-.PHONY : roscpp_generate_messages_eus
-
-# fast build rule for target.
-roscpp_generate_messages_eus/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/roscpp_generate_messages_eus.dir/build.make planning/CMakeFiles/roscpp_generate_messages_eus.dir/build
-.PHONY : roscpp_generate_messages_eus/fast
-
-# Convenience name for target.
-planning/CMakeFiles/dynamic_reconfigure_generate_messages_cpp.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/dynamic_reconfigure_generate_messages_cpp.dir/rule
-.PHONY : planning/CMakeFiles/dynamic_reconfigure_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-dynamic_reconfigure_generate_messages_cpp: planning/CMakeFiles/dynamic_reconfigure_generate_messages_cpp.dir/rule
-
-.PHONY : dynamic_reconfigure_generate_messages_cpp
-
-# fast build rule for target.
-dynamic_reconfigure_generate_messages_cpp/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/dynamic_reconfigure_generate_messages_cpp.dir/build.make planning/CMakeFiles/dynamic_reconfigure_generate_messages_cpp.dir/build
-.PHONY : dynamic_reconfigure_generate_messages_cpp/fast
-
-# Convenience name for target.
-planning/CMakeFiles/roscpp_generate_messages_cpp.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-.PHONY : planning/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_cpp: planning/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-
-.PHONY : roscpp_generate_messages_cpp
-
-# fast build rule for target.
-roscpp_generate_messages_cpp/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make planning/CMakeFiles/roscpp_generate_messages_cpp.dir/build
-.PHONY : roscpp_generate_messages_cpp/fast
-
-# Convenience name for target.
-planning/CMakeFiles/dynamic_reconfigure_generate_messages_eus.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/dynamic_reconfigure_generate_messages_eus.dir/rule
-.PHONY : planning/CMakeFiles/dynamic_reconfigure_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-dynamic_reconfigure_generate_messages_eus: planning/CMakeFiles/dynamic_reconfigure_generate_messages_eus.dir/rule
-
-.PHONY : dynamic_reconfigure_generate_messages_eus
-
-# fast build rule for target.
-dynamic_reconfigure_generate_messages_eus/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/dynamic_reconfigure_generate_messages_eus.dir/build.make planning/CMakeFiles/dynamic_reconfigure_generate_messages_eus.dir/build
-.PHONY : dynamic_reconfigure_generate_messages_eus/fast
-
-# Convenience name for target.
-planning/CMakeFiles/_catkin_empty_exported_target.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/_catkin_empty_exported_target.dir/rule
-.PHONY : planning/CMakeFiles/_catkin_empty_exported_target.dir/rule
-
-# Convenience name for target.
-_catkin_empty_exported_target: planning/CMakeFiles/_catkin_empty_exported_target.dir/rule
-
-.PHONY : _catkin_empty_exported_target
-
-# fast build rule for target.
-_catkin_empty_exported_target/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/_catkin_empty_exported_target.dir/build.make planning/CMakeFiles/_catkin_empty_exported_target.dir/build
-.PHONY : _catkin_empty_exported_target/fast
-
-# Convenience name for target.
-planning/CMakeFiles/dynamic_reconfigure_generate_messages_nodejs.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/dynamic_reconfigure_generate_messages_nodejs.dir/rule
-.PHONY : planning/CMakeFiles/dynamic_reconfigure_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-dynamic_reconfigure_generate_messages_nodejs: planning/CMakeFiles/dynamic_reconfigure_generate_messages_nodejs.dir/rule
-
-.PHONY : dynamic_reconfigure_generate_messages_nodejs
-
-# fast build rule for target.
-dynamic_reconfigure_generate_messages_nodejs/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/dynamic_reconfigure_generate_messages_nodejs.dir/build.make planning/CMakeFiles/dynamic_reconfigure_generate_messages_nodejs.dir/build
-.PHONY : dynamic_reconfigure_generate_messages_nodejs/fast
-
-# Convenience name for target.
-planning/CMakeFiles/actionlib_generate_messages_eus.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/actionlib_generate_messages_eus.dir/rule
-.PHONY : planning/CMakeFiles/actionlib_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-actionlib_generate_messages_eus: planning/CMakeFiles/actionlib_generate_messages_eus.dir/rule
-
-.PHONY : actionlib_generate_messages_eus
-
-# fast build rule for target.
-actionlib_generate_messages_eus/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/actionlib_generate_messages_eus.dir/build.make planning/CMakeFiles/actionlib_generate_messages_eus.dir/build
-.PHONY : actionlib_generate_messages_eus/fast
-
-# Convenience name for target.
-planning/CMakeFiles/baxter_core_msgs_generate_messages_cpp.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/baxter_core_msgs_generate_messages_cpp.dir/rule
-.PHONY : planning/CMakeFiles/baxter_core_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-baxter_core_msgs_generate_messages_cpp: planning/CMakeFiles/baxter_core_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : baxter_core_msgs_generate_messages_cpp
-
-# fast build rule for target.
-baxter_core_msgs_generate_messages_cpp/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/baxter_core_msgs_generate_messages_cpp.dir/build.make planning/CMakeFiles/baxter_core_msgs_generate_messages_cpp.dir/build
-.PHONY : baxter_core_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-planning/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/rule
-.PHONY : planning/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-tf2_msgs_generate_messages_cpp: planning/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : tf2_msgs_generate_messages_cpp
-
-# fast build rule for target.
-tf2_msgs_generate_messages_cpp/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/build.make planning/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/build
-.PHONY : tf2_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-planning/CMakeFiles/baxter_core_msgs_generate_messages_lisp.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/baxter_core_msgs_generate_messages_lisp.dir/rule
-.PHONY : planning/CMakeFiles/baxter_core_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-baxter_core_msgs_generate_messages_lisp: planning/CMakeFiles/baxter_core_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : baxter_core_msgs_generate_messages_lisp
-
-# fast build rule for target.
-baxter_core_msgs_generate_messages_lisp/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/baxter_core_msgs_generate_messages_lisp.dir/build.make planning/CMakeFiles/baxter_core_msgs_generate_messages_lisp.dir/build
-.PHONY : baxter_core_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-planning/CMakeFiles/intera_core_msgs_generate_messages_cpp.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/intera_core_msgs_generate_messages_cpp.dir/rule
-.PHONY : planning/CMakeFiles/intera_core_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-intera_core_msgs_generate_messages_cpp: planning/CMakeFiles/intera_core_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : intera_core_msgs_generate_messages_cpp
-
-# fast build rule for target.
-intera_core_msgs_generate_messages_cpp/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/intera_core_msgs_generate_messages_cpp.dir/build.make planning/CMakeFiles/intera_core_msgs_generate_messages_cpp.dir/build
-.PHONY : intera_core_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-planning/CMakeFiles/baxter_core_msgs_generate_messages_py.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/baxter_core_msgs_generate_messages_py.dir/rule
-.PHONY : planning/CMakeFiles/baxter_core_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-baxter_core_msgs_generate_messages_py: planning/CMakeFiles/baxter_core_msgs_generate_messages_py.dir/rule
-
-.PHONY : baxter_core_msgs_generate_messages_py
-
-# fast build rule for target.
-baxter_core_msgs_generate_messages_py/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/baxter_core_msgs_generate_messages_py.dir/build.make planning/CMakeFiles/baxter_core_msgs_generate_messages_py.dir/build
-.PHONY : baxter_core_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-planning/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
-.PHONY : planning/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_nodejs: planning/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_nodejs/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make planning/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
-.PHONY : rosgraph_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-planning/CMakeFiles/baxter_maintenance_msgs_generate_messages_cpp.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/baxter_maintenance_msgs_generate_messages_cpp.dir/rule
-.PHONY : planning/CMakeFiles/baxter_maintenance_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-baxter_maintenance_msgs_generate_messages_cpp: planning/CMakeFiles/baxter_maintenance_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : baxter_maintenance_msgs_generate_messages_cpp
-
-# fast build rule for target.
-baxter_maintenance_msgs_generate_messages_cpp/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/baxter_maintenance_msgs_generate_messages_cpp.dir/build.make planning/CMakeFiles/baxter_maintenance_msgs_generate_messages_cpp.dir/build
-.PHONY : baxter_maintenance_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-planning/CMakeFiles/baxter_maintenance_msgs_generate_messages_eus.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/baxter_maintenance_msgs_generate_messages_eus.dir/rule
-.PHONY : planning/CMakeFiles/baxter_maintenance_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-baxter_maintenance_msgs_generate_messages_eus: planning/CMakeFiles/baxter_maintenance_msgs_generate_messages_eus.dir/rule
-
-.PHONY : baxter_maintenance_msgs_generate_messages_eus
-
-# fast build rule for target.
-baxter_maintenance_msgs_generate_messages_eus/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/baxter_maintenance_msgs_generate_messages_eus.dir/build.make planning/CMakeFiles/baxter_maintenance_msgs_generate_messages_eus.dir/build
-.PHONY : baxter_maintenance_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-planning/CMakeFiles/intera_core_msgs_generate_messages_py.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/intera_core_msgs_generate_messages_py.dir/rule
-.PHONY : planning/CMakeFiles/intera_core_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-intera_core_msgs_generate_messages_py: planning/CMakeFiles/intera_core_msgs_generate_messages_py.dir/rule
-
-.PHONY : intera_core_msgs_generate_messages_py
-
-# fast build rule for target.
-intera_core_msgs_generate_messages_py/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/intera_core_msgs_generate_messages_py.dir/build.make planning/CMakeFiles/intera_core_msgs_generate_messages_py.dir/build
-.PHONY : intera_core_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-planning/CMakeFiles/baxter_maintenance_msgs_generate_messages_lisp.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/baxter_maintenance_msgs_generate_messages_lisp.dir/rule
-.PHONY : planning/CMakeFiles/baxter_maintenance_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-baxter_maintenance_msgs_generate_messages_lisp: planning/CMakeFiles/baxter_maintenance_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : baxter_maintenance_msgs_generate_messages_lisp
-
-# fast build rule for target.
-baxter_maintenance_msgs_generate_messages_lisp/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/baxter_maintenance_msgs_generate_messages_lisp.dir/build.make planning/CMakeFiles/baxter_maintenance_msgs_generate_messages_lisp.dir/build
-.PHONY : baxter_maintenance_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-planning/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-.PHONY : planning/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_nodejs: planning/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-
-.PHONY : roscpp_generate_messages_nodejs
-
-# fast build rule for target.
-roscpp_generate_messages_nodejs/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make planning/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
-.PHONY : roscpp_generate_messages_nodejs/fast
-
-# Convenience name for target.
-planning/CMakeFiles/baxter_maintenance_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/baxter_maintenance_msgs_generate_messages_nodejs.dir/rule
-.PHONY : planning/CMakeFiles/baxter_maintenance_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-baxter_maintenance_msgs_generate_messages_nodejs: planning/CMakeFiles/baxter_maintenance_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : baxter_maintenance_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-baxter_maintenance_msgs_generate_messages_nodejs/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/baxter_maintenance_msgs_generate_messages_nodejs.dir/build.make planning/CMakeFiles/baxter_maintenance_msgs_generate_messages_nodejs.dir/build
-.PHONY : baxter_maintenance_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-planning/CMakeFiles/baxter_maintenance_msgs_generate_messages_py.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/baxter_maintenance_msgs_generate_messages_py.dir/rule
-.PHONY : planning/CMakeFiles/baxter_maintenance_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-baxter_maintenance_msgs_generate_messages_py: planning/CMakeFiles/baxter_maintenance_msgs_generate_messages_py.dir/rule
-
-.PHONY : baxter_maintenance_msgs_generate_messages_py
-
-# fast build rule for target.
-baxter_maintenance_msgs_generate_messages_py/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/baxter_maintenance_msgs_generate_messages_py.dir/build.make planning/CMakeFiles/baxter_maintenance_msgs_generate_messages_py.dir/build
-.PHONY : baxter_maintenance_msgs_generate_messages_py/fast
 
 # Convenience name for target.
 planning/CMakeFiles/intera_core_msgs_generate_messages_eus.dir/rule:
@@ -871,34 +196,49 @@ intera_core_msgs_generate_messages_eus/fast:
 .PHONY : intera_core_msgs_generate_messages_eus/fast
 
 # Convenience name for target.
-planning/CMakeFiles/intera_core_msgs_generate_messages_lisp.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/intera_core_msgs_generate_messages_lisp.dir/rule
-.PHONY : planning/CMakeFiles/intera_core_msgs_generate_messages_lisp.dir/rule
+planning/CMakeFiles/intera_motion_msgs_generate_messages_lisp.dir/rule:
+	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/intera_motion_msgs_generate_messages_lisp.dir/rule
+.PHONY : planning/CMakeFiles/intera_motion_msgs_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
-intera_core_msgs_generate_messages_lisp: planning/CMakeFiles/intera_core_msgs_generate_messages_lisp.dir/rule
+intera_motion_msgs_generate_messages_lisp: planning/CMakeFiles/intera_motion_msgs_generate_messages_lisp.dir/rule
 
-.PHONY : intera_core_msgs_generate_messages_lisp
+.PHONY : intera_motion_msgs_generate_messages_lisp
 
 # fast build rule for target.
-intera_core_msgs_generate_messages_lisp/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/intera_core_msgs_generate_messages_lisp.dir/build.make planning/CMakeFiles/intera_core_msgs_generate_messages_lisp.dir/build
-.PHONY : intera_core_msgs_generate_messages_lisp/fast
+intera_motion_msgs_generate_messages_lisp/fast:
+	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/intera_motion_msgs_generate_messages_lisp.dir/build.make planning/CMakeFiles/intera_motion_msgs_generate_messages_lisp.dir/build
+.PHONY : intera_motion_msgs_generate_messages_lisp/fast
 
 # Convenience name for target.
-planning/CMakeFiles/dynamic_reconfigure_gencfg.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/dynamic_reconfigure_gencfg.dir/rule
-.PHONY : planning/CMakeFiles/dynamic_reconfigure_gencfg.dir/rule
+planning/CMakeFiles/intera_motion_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/intera_motion_msgs_generate_messages_nodejs.dir/rule
+.PHONY : planning/CMakeFiles/intera_motion_msgs_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
-dynamic_reconfigure_gencfg: planning/CMakeFiles/dynamic_reconfigure_gencfg.dir/rule
+intera_motion_msgs_generate_messages_nodejs: planning/CMakeFiles/intera_motion_msgs_generate_messages_nodejs.dir/rule
 
-.PHONY : dynamic_reconfigure_gencfg
+.PHONY : intera_motion_msgs_generate_messages_nodejs
 
 # fast build rule for target.
-dynamic_reconfigure_gencfg/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/dynamic_reconfigure_gencfg.dir/build.make planning/CMakeFiles/dynamic_reconfigure_gencfg.dir/build
-.PHONY : dynamic_reconfigure_gencfg/fast
+intera_motion_msgs_generate_messages_nodejs/fast:
+	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/intera_motion_msgs_generate_messages_nodejs.dir/build.make planning/CMakeFiles/intera_motion_msgs_generate_messages_nodejs.dir/build
+.PHONY : intera_motion_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+planning/CMakeFiles/intera_core_msgs_generate_messages_cpp.dir/rule:
+	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/intera_core_msgs_generate_messages_cpp.dir/rule
+.PHONY : planning/CMakeFiles/intera_core_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+intera_core_msgs_generate_messages_cpp: planning/CMakeFiles/intera_core_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : intera_core_msgs_generate_messages_cpp
+
+# fast build rule for target.
+intera_core_msgs_generate_messages_cpp/fast:
+	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/intera_core_msgs_generate_messages_cpp.dir/build.make planning/CMakeFiles/intera_core_msgs_generate_messages_cpp.dir/build
+.PHONY : intera_core_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
 planning/CMakeFiles/intera_core_msgs_generate_messages_nodejs.dir/rule:
@@ -916,19 +256,19 @@ intera_core_msgs_generate_messages_nodejs/fast:
 .PHONY : intera_core_msgs_generate_messages_nodejs/fast
 
 # Convenience name for target.
-planning/CMakeFiles/baxter_core_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/baxter_core_msgs_generate_messages_nodejs.dir/rule
-.PHONY : planning/CMakeFiles/baxter_core_msgs_generate_messages_nodejs.dir/rule
+planning/CMakeFiles/intera_motion_msgs_generate_messages_cpp.dir/rule:
+	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/intera_motion_msgs_generate_messages_cpp.dir/rule
+.PHONY : planning/CMakeFiles/intera_motion_msgs_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-baxter_core_msgs_generate_messages_nodejs: planning/CMakeFiles/baxter_core_msgs_generate_messages_nodejs.dir/rule
+intera_motion_msgs_generate_messages_cpp: planning/CMakeFiles/intera_motion_msgs_generate_messages_cpp.dir/rule
 
-.PHONY : baxter_core_msgs_generate_messages_nodejs
+.PHONY : intera_motion_msgs_generate_messages_cpp
 
 # fast build rule for target.
-baxter_core_msgs_generate_messages_nodejs/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/baxter_core_msgs_generate_messages_nodejs.dir/build.make planning/CMakeFiles/baxter_core_msgs_generate_messages_nodejs.dir/build
-.PHONY : baxter_core_msgs_generate_messages_nodejs/fast
+intera_motion_msgs_generate_messages_cpp/fast:
+	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/intera_motion_msgs_generate_messages_cpp.dir/build.make planning/CMakeFiles/intera_motion_msgs_generate_messages_cpp.dir/build
+.PHONY : intera_motion_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
 planning/CMakeFiles/intera_motion_msgs_generate_messages_eus.dir/rule:
@@ -946,34 +286,49 @@ intera_motion_msgs_generate_messages_eus/fast:
 .PHONY : intera_motion_msgs_generate_messages_eus/fast
 
 # Convenience name for target.
-planning/CMakeFiles/control_msgs_generate_messages_py.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/control_msgs_generate_messages_py.dir/rule
-.PHONY : planning/CMakeFiles/control_msgs_generate_messages_py.dir/rule
+planning/CMakeFiles/intera_interface_gencfg.dir/rule:
+	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/intera_interface_gencfg.dir/rule
+.PHONY : planning/CMakeFiles/intera_interface_gencfg.dir/rule
 
 # Convenience name for target.
-control_msgs_generate_messages_py: planning/CMakeFiles/control_msgs_generate_messages_py.dir/rule
+intera_interface_gencfg: planning/CMakeFiles/intera_interface_gencfg.dir/rule
 
-.PHONY : control_msgs_generate_messages_py
+.PHONY : intera_interface_gencfg
 
 # fast build rule for target.
-control_msgs_generate_messages_py/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/control_msgs_generate_messages_py.dir/build.make planning/CMakeFiles/control_msgs_generate_messages_py.dir/build
-.PHONY : control_msgs_generate_messages_py/fast
+intera_interface_gencfg/fast:
+	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/intera_interface_gencfg.dir/build.make planning/CMakeFiles/intera_interface_gencfg.dir/build
+.PHONY : intera_interface_gencfg/fast
 
 # Convenience name for target.
-planning/CMakeFiles/intera_motion_msgs_generate_messages_cpp.dir/rule:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/intera_motion_msgs_generate_messages_cpp.dir/rule
-.PHONY : planning/CMakeFiles/intera_motion_msgs_generate_messages_cpp.dir/rule
+planning/CMakeFiles/intera_core_msgs_generate_messages_lisp.dir/rule:
+	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/intera_core_msgs_generate_messages_lisp.dir/rule
+.PHONY : planning/CMakeFiles/intera_core_msgs_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
-intera_motion_msgs_generate_messages_cpp: planning/CMakeFiles/intera_motion_msgs_generate_messages_cpp.dir/rule
+intera_core_msgs_generate_messages_lisp: planning/CMakeFiles/intera_core_msgs_generate_messages_lisp.dir/rule
 
-.PHONY : intera_motion_msgs_generate_messages_cpp
+.PHONY : intera_core_msgs_generate_messages_lisp
 
 # fast build rule for target.
-intera_motion_msgs_generate_messages_cpp/fast:
-	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/intera_motion_msgs_generate_messages_cpp.dir/build.make planning/CMakeFiles/intera_motion_msgs_generate_messages_cpp.dir/build
-.PHONY : intera_motion_msgs_generate_messages_cpp/fast
+intera_core_msgs_generate_messages_lisp/fast:
+	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/intera_core_msgs_generate_messages_lisp.dir/build.make planning/CMakeFiles/intera_core_msgs_generate_messages_lisp.dir/build
+.PHONY : intera_core_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+planning/CMakeFiles/intera_core_msgs_generate_messages_py.dir/rule:
+	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f CMakeFiles/Makefile2 planning/CMakeFiles/intera_core_msgs_generate_messages_py.dir/rule
+.PHONY : planning/CMakeFiles/intera_core_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+intera_core_msgs_generate_messages_py: planning/CMakeFiles/intera_core_msgs_generate_messages_py.dir/rule
+
+.PHONY : intera_core_msgs_generate_messages_py
+
+# fast build rule for target.
+intera_core_msgs_generate_messages_py/fast:
+	cd /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build && $(MAKE) -f planning/CMakeFiles/intera_core_msgs_generate_messages_py.dir/build.make planning/CMakeFiles/intera_core_msgs_generate_messages_py.dir/build
+.PHONY : intera_core_msgs_generate_messages_py/fast
 
 # Help Target
 help:
@@ -981,67 +336,24 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... install"
-	@echo "... rebuild_cache"
 	@echo "... test"
-	@echo "... install/strip"
-	@echo "... tf2_msgs_generate_messages_py"
-	@echo "... tf2_msgs_generate_messages_nodejs"
-	@echo "... tf2_msgs_generate_messages_lisp"
-	@echo "... tf2_msgs_generate_messages_eus"
-	@echo "... intera_motion_msgs_generate_messages_nodejs"
-	@echo "... intera_motion_msgs_generate_messages_lisp"
 	@echo "... install/local"
-	@echo "... baxter_interface_gencfg"
-	@echo "... control_msgs_generate_messages_nodejs"
-	@echo "... intera_interface_gencfg"
-	@echo "... rosgraph_msgs_generate_messages_lisp"
-	@echo "... rosgraph_msgs_generate_messages_py"
-	@echo "... rosgraph_msgs_generate_messages_cpp"
-	@echo "... control_msgs_generate_messages_eus"
-	@echo "... roscpp_generate_messages_py"
-	@echo "... dynamic_reconfigure_generate_messages_py"
-	@echo "... actionlib_generate_messages_lisp"
-	@echo "... actionlib_generate_messages_nodejs"
-	@echo "... control_msgs_generate_messages_lisp"
-	@echo "... roscpp_generate_messages_lisp"
-	@echo "... dynamic_reconfigure_generate_messages_lisp"
-	@echo "... actionlib_generate_messages_cpp"
-	@echo "... control_msgs_generate_messages_cpp"
-	@echo "... rosgraph_msgs_generate_messages_eus"
+	@echo "... rebuild_cache"
 	@echo "... intera_motion_msgs_generate_messages_py"
-	@echo "... baxter_core_msgs_generate_messages_eus"
-	@echo "... actionlib_generate_messages_py"
-	@echo "... list_install_components"
-	@echo "... roscpp_generate_messages_eus"
-	@echo "... dynamic_reconfigure_generate_messages_cpp"
-	@echo "... roscpp_generate_messages_cpp"
-	@echo "... dynamic_reconfigure_generate_messages_eus"
-	@echo "... _catkin_empty_exported_target"
-	@echo "... dynamic_reconfigure_generate_messages_nodejs"
-	@echo "... actionlib_generate_messages_eus"
-	@echo "... baxter_core_msgs_generate_messages_cpp"
-	@echo "... tf2_msgs_generate_messages_cpp"
-	@echo "... baxter_core_msgs_generate_messages_lisp"
-	@echo "... edit_cache"
-	@echo "... intera_core_msgs_generate_messages_cpp"
-	@echo "... baxter_core_msgs_generate_messages_py"
-	@echo "... rosgraph_msgs_generate_messages_nodejs"
-	@echo "... baxter_maintenance_msgs_generate_messages_cpp"
-	@echo "... baxter_maintenance_msgs_generate_messages_eus"
-	@echo "... intera_core_msgs_generate_messages_py"
-	@echo "... baxter_maintenance_msgs_generate_messages_lisp"
-	@echo "... roscpp_generate_messages_nodejs"
-	@echo "... baxter_maintenance_msgs_generate_messages_nodejs"
-	@echo "... baxter_maintenance_msgs_generate_messages_py"
 	@echo "... intera_core_msgs_generate_messages_eus"
-	@echo "... intera_core_msgs_generate_messages_lisp"
-	@echo "... dynamic_reconfigure_gencfg"
+	@echo "... intera_motion_msgs_generate_messages_lisp"
+	@echo "... install"
+	@echo "... intera_motion_msgs_generate_messages_nodejs"
+	@echo "... intera_core_msgs_generate_messages_cpp"
 	@echo "... intera_core_msgs_generate_messages_nodejs"
-	@echo "... baxter_core_msgs_generate_messages_nodejs"
-	@echo "... intera_motion_msgs_generate_messages_eus"
-	@echo "... control_msgs_generate_messages_py"
 	@echo "... intera_motion_msgs_generate_messages_cpp"
+	@echo "... list_install_components"
+	@echo "... install/strip"
+	@echo "... intera_motion_msgs_generate_messages_eus"
+	@echo "... edit_cache"
+	@echo "... intera_interface_gencfg"
+	@echo "... intera_core_msgs_generate_messages_lisp"
+	@echo "... intera_core_msgs_generate_messages_py"
 .PHONY : help
 
 

@@ -6,4 +6,5 @@
 # testing this directory and lists subdirectories to be tested as well.
 subdirs(gtest)
 subdirs(ik)
+subdirs(obj_det)
 subdirs(planning)
