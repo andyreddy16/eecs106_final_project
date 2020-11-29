@@ -10,10 +10,8 @@ def callback(message):
     points = message.points
     channel_info = message.channels
     # do stuff
-    print("Points:", points)
-    print()
-    print("Channel info:", channel_info)
-    print()
+    print(points)
+    print(channel_info)
 
 def listener():
     rospy.Subscriber("/robot/sonar/head_sonar/state", PointCloud, callback)

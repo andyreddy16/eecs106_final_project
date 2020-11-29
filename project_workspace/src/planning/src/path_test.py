@@ -99,10 +99,25 @@ def main():
     while not rospy.is_shutdown():
 
     # Set your goal positions here
-    	move_to_goal(0.47, -0.85, 0.07)
-        move_to_goal(0.6, -0.3, 0.0)
-        move_to_goal(0.6, -0.1, 0.1)
+        orient_const = OrientationConstraint()
+        # std_msgs/Header header
+        orient_const.orientation.x = 1.0
+        orient_const.orientation.y = 0.0
+        orient_const.orientation.z = 0.0
+        orient_const.orientation.w = 0.0
+        orient_const.header.seq = 0.0
+        orient_const.header.stamp = rospy.Time.now()
+        orient_const.header.frame_id = "right_gripper"
 
+
+        orient_const.link_name = "right_gripper"
+        orient_const.absolute_x_axis_tolerance = 0.05
+        orient_const.absolute_y_axis_tolerance = 0.05
+        orient_const.absolute_z_axis_tolerance = 0.05
+        orient_const.weight
+        move_to_goal(0.4, -0.25, -0.1, orien_const=[orient_const])
+        print("Done 1")
+        # move_to_goal(0.3, -0.1, 0.0)
         
 
 if __name__ == '__main__':

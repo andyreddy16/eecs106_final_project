@@ -166,20 +166,20 @@ def load_gazebo_models(table_pose=Pose(position=Point(x=0.75, y=0.0, z=0.0)),
     model_path = rospkg.RosPack().get_path('planning')+"/models/"
     # Load Table SDF
     table_xml = ''
-    with open (model_path + "cafe_table/model.sdf", "r") as table_file:
-        table_xml=table_file.read().replace('\n', '')
+    # with open (model_path + "cafe_table/model.sdf", "r") as table_file:
+    #     table_xml=table_file.read().replace('\n', '')
     # Load Block URDF
     block_xml = ''
     with open (model_path + "block/model.urdf", "r") as block_file:
         block_xml=block_file.read().replace('\n', '')
     # Spawn Table SDF
-    rospy.wait_for_service('/gazebo/spawn_sdf_model')
-    try:
-        spawn_sdf = rospy.ServiceProxy('/gazebo/spawn_sdf_model', SpawnModel)
-        resp_sdf = spawn_sdf("cafe_table", table_xml, "/",
-                             table_pose, table_reference_frame)
-    except rospy.ServiceException, e:
-        rospy.logerr("Spawn SDF service call failed: {0}".format(e))
+    # rospy.wait_for_service('/gazebo/spawn_sdf_model')
+    # try:
+    #     spawn_sdf = rospy.ServiceProxy('/gazebo/spawn_sdf_model', SpawnModel)
+    #     resp_sdf = spawn_sdf("cafe_table", table_xml, "/",
+    #                          table_pose, table_reference_frame)
+    # except rospy.ServiceException, e:
+    #     rospy.logerr("Spawn SDF service call failed: {0}".format(e))
     # Spawn Block URDF
     rospy.wait_for_service('/gazebo/spawn_urdf_model')
     try:
@@ -196,7 +196,7 @@ def delete_gazebo_models():
     # available since Gazebo has been killed, it is fine to error out
     try:
         delete_model = rospy.ServiceProxy('/gazebo/delete_model', DeleteModel)
-        resp_delete = delete_model("cafe_table")
+        # resp_delete = delete_model("cafe_table")
         resp_delete = delete_model("block")
     except rospy.ServiceException, e:
         print("Delete Model service call failed: {0}".format(e))
@@ -220,6 +220,8 @@ def main():
     # Note that the models reference is the /world frame
     # and the IK operates with respect to the /base frame
     load_gazebo_models()
+    rospy.sleep(10.)
+    delete_gazebo_models()
     # rospy.spin()
     # Remove models from the scene on shutdown
     # rospy.on_shutdown(delete_gazebo_models)
