@@ -1,0 +1,8 @@
+prefix=/home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/devel
+
+Name: ik
+Description: Description of ik
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
