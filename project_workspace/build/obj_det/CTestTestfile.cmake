@@ -1,6 +1,6 @@
 # CMake generated Testfile for 
-# Source directory: /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/src/obj_det
-# Build directory: /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build/obj_det
+# Source directory: /home/andyreddy/ros_workspaces/eecs106_final_project/project_workspace/src/obj_det
+# Build directory: /home/andyreddy/ros_workspaces/eecs106_final_project/project_workspace/build/obj_det
 # 
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.

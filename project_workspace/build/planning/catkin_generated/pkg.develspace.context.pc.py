@@ -4,5 +4,5 @@ PROJECT_PKG_CONFIG_INCLUDE_DIRS = "".split(';') if "" != "" else []
 PROJECT_CATKIN_DEPENDS = "".replace(';', ' ')
 PKG_CONFIG_LIBRARIES_WITH_PREFIX = "".split(';') if "" != "" else []
 PROJECT_NAME = "planning"
-PROJECT_SPACE_DIR = "/home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/devel"
+PROJECT_SPACE_DIR = "/home/andyreddy/ros_workspaces/eecs106_final_project/project_workspace/devel"
 PROJECT_VERSION = "0.0.0"
