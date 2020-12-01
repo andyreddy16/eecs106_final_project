@@ -28,7 +28,7 @@ def main():
 
     # Make sure that you've looked at and understand path_planner.py before starting
 
-    planner = PathPlanner("right_arm")
+    planner = PathPlanner("left_arm")
 
 
 	# K values for Part 5
@@ -101,16 +101,16 @@ def main():
 
 
     while not rospy.is_shutdown():
-        right_gripper = robot_gripper.Gripper('right')
+        left_gripper = robot_gripper.Gripper('left')
         # Set your goal positions here
         print("starting")
-        move_to_goal(0.55, -0.3, 0.1)
+        move_to_goal(0.7, 0.3, 0.1)
         print("opening")
-        right_gripper.open()
+        left_gripper.open()
         print("executing")
-    	move_to_goal(0.55, -0.3, -0.1)
+    	move_to_goal(0.7, -0.3, 0.0)
         print("closings")
-        right_gripper.close()
+        left_gripper.close()
         print("Done")
         # move_to_goal(0.4225 + 0.1, -0.1265, 0.7725 - 0.92)
         # right_gripper.close()

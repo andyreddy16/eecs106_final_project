@@ -1,8 +1,8 @@
-# Install script for directory: /home/andyreddy/ros_workspaces/eecs106_final_project/project_workspace/src/planning
+# Install script for directory: /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/src/planning
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/andyreddy/ros_workspaces/eecs106_final_project/project_workspace/install")
+  set(CMAKE_INSTALL_PREFIX "/home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -33,17 +33,17 @@ if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/andyreddy/ros_workspaces/eecs106_final_project/project_workspace/build/planning/catkin_generated/installspace/planning.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build/planning/catkin_generated/installspace/planning.pc")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/planning/cmake" TYPE FILE FILES
-    "/home/andyreddy/ros_workspaces/eecs106_final_project/project_workspace/build/planning/catkin_generated/installspace/planningConfig.cmake"
-    "/home/andyreddy/ros_workspaces/eecs106_final_project/project_workspace/build/planning/catkin_generated/installspace/planningConfig-version.cmake"
+    "/home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build/planning/catkin_generated/installspace/planningConfig.cmake"
+    "/home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build/planning/catkin_generated/installspace/planningConfig-version.cmake"
     )
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/planning" TYPE FILE FILES "/home/andyreddy/ros_workspaces/eecs106_final_project/project_workspace/src/planning/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/planning" TYPE FILE FILES "/home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/src/planning/package.xml")
 endif()
 

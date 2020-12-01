@@ -104,11 +104,11 @@ def main():
         right_gripper = robot_gripper.Gripper('right')
         # Set your goal positions here
         print("starting")
-        move_to_goal(0.55, -0.3, 0.1)
+        move_to_goal(0.7, -0.3, 0.1)
         print("opening")
         right_gripper.open()
         print("executing")
-    	move_to_goal(0.55, -0.3, -0.1)
+    	move_to_goal(0.7, -0.3, 0.0)
         print("closings")
         right_gripper.close()
         print("Done")

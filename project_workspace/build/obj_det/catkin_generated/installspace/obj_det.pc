@@ -1,4 +1,4 @@
-prefix=/home/andyreddy/ros_workspaces/eecs106_final_project/project_workspace/install
+prefix=/home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/install
 
 Name: obj_det
 Description: Description of obj_det
