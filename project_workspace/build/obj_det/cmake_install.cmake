@@ -1,8 +1,8 @@
-# Install script for directory: /home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/src/obj_det
+# Install script for directory: /home/ryandehmoubed/ros_workspaces/eecs106_final_project/project_workspace/src/obj_det
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/install")
+  set(CMAKE_INSTALL_PREFIX "/home/ryandehmoubed/ros_workspaces/eecs106_final_project/project_workspace/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -33,17 +33,17 @@ if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build/obj_det/catkin_generated/installspace/obj_det.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/ryandehmoubed/ros_workspaces/eecs106_final_project/project_workspace/build/obj_det/catkin_generated/installspace/obj_det.pc")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/obj_det/cmake" TYPE FILE FILES
-    "/home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build/obj_det/catkin_generated/installspace/obj_detConfig.cmake"
-    "/home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/build/obj_det/catkin_generated/installspace/obj_detConfig-version.cmake"
+    "/home/ryandehmoubed/ros_workspaces/eecs106_final_project/project_workspace/build/obj_det/catkin_generated/installspace/obj_detConfig.cmake"
+    "/home/ryandehmoubed/ros_workspaces/eecs106_final_project/project_workspace/build/obj_det/catkin_generated/installspace/obj_detConfig-version.cmake"
     )
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/obj_det" TYPE FILE FILES "/home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/src/obj_det/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/obj_det" TYPE FILE FILES "/home/ryandehmoubed/ros_workspaces/eecs106_final_project/project_workspace/src/obj_det/package.xml")
 endif()
 

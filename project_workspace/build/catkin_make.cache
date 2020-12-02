@@ -1,2 +1,2 @@
 ik:obj_det:planning
--DCATKIN_DEVEL_PREFIX=/home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/devel -DCMAKE_INSTALL_PREFIX=/home/akashvelu/ros_workspaces/eecs106_final_project/project_workspace/install -G Unix Makefiles
+-DCATKIN_DEVEL_PREFIX=/home/ryandehmoubed/ros_workspaces/eecs106_final_project/project_workspace/devel -DCMAKE_INSTALL_PREFIX=/home/ryandehmoubed/ros_workspaces/eecs106_final_project/project_workspace/install -G Unix Makefiles
