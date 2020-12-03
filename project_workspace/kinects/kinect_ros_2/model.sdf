@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <sdf version="1.5">
-  <model name="kinect_ros">
+  <model name="kinect_ros_2">
     <pose>0 0 0.036 0 0 0</pose>
     <link name="link">
       <inertial>
@@ -16,7 +16,7 @@
       <visual name="visual">
         <geometry>
           <mesh>
-            <uri>model://kinect_ros/meshes/kinect.dae</uri>
+            <uri>model://kinect_ros_2/meshes/kinect.dae</uri>
           </mesh>
         </geometry>
       </visual>
@@ -41,11 +41,11 @@
             will control the frame rate. -->
           <updateRate>0.0</updateRate>
           <cameraName>camera_ir</cameraName>
-          <imageTopicName>/camera/color/image_raw</imageTopicName>
-          <cameraInfoTopicName>/camera/color/camera_info</cameraInfoTopicName>
-          <depthImageTopicName>/camera/depth/image_raw</depthImageTopicName>
-          <depthImageCameraInfoTopicName>/camera/depth/camera_info</depthImageCameraInfoTopicName>
-          <pointCloudTopicName>/camera/depth/points</pointCloudTopicName>
+          <imageTopicName>/camera/kinect2/color/image_raw</imageTopicName>
+          <cameraInfoTopicName>/camera/kinect2/color/camera_info</cameraInfoTopicName>
+          <depthImageTopicName>/camera/kinect2/depth/image_raw</depthImageTopicName>
+          <depthImageCameraInfoTopicName>/camera/kinect2/depth/camera_info</depthImageCameraInfoTopicName>
+          <pointCloudTopicName>/camera/kinect2/depth/points</pointCloudTopicName>
           <frameName>world</frameName>
           <pointCloudCutoff>0.5</pointCloudCutoff>
           <pointCloudCutoffMax>3.0</pointCloudCutoffMax>
