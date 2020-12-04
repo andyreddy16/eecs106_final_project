@@ -67,11 +67,11 @@ def map_user_input():
         else:
             joint_angles = [float(angle) for angle in user_joint_angles.split(",")]
             # left_gripper.open()
-            # rospy.sleep(0.5)
-            # current_joint_angles = left.joint_angles()
-            # for i in range(len(joint_angles)):
-            #     joint_angles[i] += current_joint_angles[lj[i]]
-            # print(joint_angles)
+            rospy.sleep(0.5)
+            current_joint_angles = left.joint_angles()
+            for i in range(len(joint_angles)):
+                joint_angles[i] += current_joint_angles[lj[i]]
+            print(joint_angles)
 
             commands = set_j(left, lj, joint_angles)
 
