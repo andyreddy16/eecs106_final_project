@@ -28,17 +28,17 @@ def main():
 
     # Make sure that you've looked at and understand path_planner.py before starting
 
-    planner = PathPlanner("right_arm")
+    planner = PathPlanner("left_arm")
 
 
-	# K values for Part 5
+    # K values for Part 5
     Kp = 0.1 * np.array([0.3, 2, 1, 1.5, 2, 2, 3]) # Borrowed from 106B Students
     Kd = 0.01 * np.array([2, 1, 2, 0.5, 0.5, 0.5, 0.5]) # Borrowed from 106B Students
     Ki = 0.01 * np.array([1, 1, 1, 1, 1, 1, 1]) # Untuned
     Kw = np.array([0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9]) # Untuned
 
-	# Initialize the controller for Part 5
-	# controller = Controller( . . . )
+    # Initialize the controller for Part 5
+    # controller = Controller( . . . )
 
     #-----------------------------------------------------#
     ## Add any obstacles to the planning scene here
@@ -57,14 +57,14 @@ def main():
     # planner.add_box_obstacle(size, "box", pose)
     # #Create a path constraint for the arm
     # #UNCOMMENT FOR THE ORIENTATION CONSTRAINTS PART
-    # orien_const = OrientationConstraint()
-    # orien_const.link_name = "right_gripper";
-    # orien_const.header.frame_id = "base";
-    # orien_const.orientation.y = -1.0;
-    # orien_const.absolute_x_axis_tolerance = 0.1;
-    # orien_const.absolute_y_axis_tolerance = 0.1;
-    # orien_const.absolute_z_axis_tolerance = 0.1;
-    # orien_const.weight = 1.0;
+    orien_const = OrientationConstraint()
+    orien_const.link_name = "left_gripper";
+    orien_const.header.frame_id = "base";
+    orien_const.orientation.y = -1.0;
+    orien_const.absolute_x_axis_tolerance = 0.1;
+    orien_const.absolute_y_axis_tolerance = 0.1;
+    orien_const.absolute_z_axis_tolerance = 0.1;
+    orien_const.weight = 1.0;
 
     def move_to_goal(x, y, z, orien_const=[], or_x=0.0, or_y=-1.0, or_z=0.0, or_w=0.0):
         while not rospy.is_shutdown():
@@ -77,13 +77,15 @@ def main():
                 goal.pose.position.y = y
                 goal.pose.position.z = z
 
-		    #Orientation as a quaternion
+            #Orientation as a quaternion
                 goal.pose.orientation.x = or_x
                 goal.pose.orientation.y = or_y
                 goal.pose.orientation.z = or_z
                 goal.pose.orientation.w = or_w
 
                 plan = planner.plan_to_pose(goal, orien_const)
+                print(plan.joint_trajectory.points[1])
+                print(plan.joint_trajectory.points[-2])
 
                 # raw_input("Press <Enter> to move the right arm to goal pose: ")
                 rospy.sleep(1)
@@ -93,6 +95,7 @@ def main():
                     raise Exception("Execution failed")
                 else:
                     break
+
             except Exception as e:
                 print e
                 traceback.print_exc()
@@ -101,21 +104,15 @@ def main():
 
 
     while not rospy.is_shutdown():
-        right_gripper = robot_gripper.Gripper('right')
+        left_gripper = robot_gripper.Gripper('left')
         # Set your goal positions here
+        # left_gripper.open()
         print("starting")
-        move_to_goal(0.55, -0.3, 0.1)
-        print("opening")
-        right_gripper.open()
-        print("executing")
-    	move_to_goal(0.55, -0.3, -0.1)
-        print("closings")
-        right_gripper.close()
-        print("Done")
-        # move_to_goal(0.4225 + 0.1, -0.1265, 0.7725 - 0.92)
-        # right_gripper.close()
-        # move_to_goal(0.4225 + 0.1 + 0.05, -0.1265, 0.7725 - 0.92)
-        # right_gripper.open()
+        # move_to_goal(0.82, 0.3, 0.1)
+        # rospy.sleep(1.)
+
+        move_to_goal(0.85, 0.3001, 0.05, orien_const=[orien_const])
+
         raw_input("Press <Enter> to cycle through motion again")
         
 

@@ -60,9 +60,9 @@ class PathPlanner(object):
         self._group.set_planning_time(5)
 
         # Set Velocity Scaling, Acceleration Scaling, and Goal Tolerance
-        self._group.set_max_velocity_scaling_factor(0.3)
-        self._group.set_max_acceleration_scaling_factor(0.5)
-        self._group.set_goal_tolerance(0.02)
+        self._group.set_max_velocity_scaling_factor(0.2)
+        self._group.set_max_acceleration_scaling_factor(0.45)
+        self._group.set_goal_tolerance(0.01)
 
         # Set the bounds of the workspace
         self._group.set_workspace([-2, -2, -2, 2, 2, 2])
