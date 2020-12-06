@@ -13,24 +13,6 @@ from ros_numpy import numpy_msg
 from sensor_msgs.msg import Image, CameraInfo
 from geometry_msgs.msg import PointStamped
 
-def do_kmeans(data, n_clusters):
-    """Uses opencv to perform k-means clustering on the data given. Clusters it into
-       n_clusters clusters.
-
-       Args:
-         data: ndarray of shape (n_datapoints, dim)
-         n_clusters: int, number of clusters to divide into.
-
-       Returns:
-         clusters: integer array of length n_datapoints. clusters[i] is
-         a number in range(n_clusters) specifying which cluster data[i]
-         was assigned to. 
-    """
-    criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 100, 0.2)
-    _, clusters, centers = kmeans = cv2.kmeans(data.astype(np.float32), n_clusters, bestLabels=None, criteria=criteria, attempts=1, flags=cv2.KMEANS_RANDOM_CENTERS)
-
-    return clusters
-
 def filter(image, lower_thresh=(0, 0, 0), upper_thresh=(50, 255, 50)):
     """Only keep the green ball and filter everything else out"""
     image_copy = np.copy(image)
@@ -148,7 +130,7 @@ class StereoImage:
             k2_centroid_msg.point.y = k2_centroid[1]
             k2_centroid_msg.point.z = 0
             self.k2_centroid_pub.publish(k2_centroid_msg)
-            
+
         self.seq += 1
 
 if __name__ == "__main__":
