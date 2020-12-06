@@ -102,18 +102,24 @@ def main():
 
     while not rospy.is_shutdown():
         right_gripper = robot_gripper.Gripper('right')
+        right_gripper.set_moving_force(80.0)
+        right_gripper.set_holding_force(80.0)
+
+        right_gripper.calibrate()
         # Set your goal positions here
         print("starting")
         # move_to_goal(0.85, -0.3001, 0.1)
         # rospy.sleep(1.)
-        move_to_goal(0.85, -0.301, 0.1)
+        move_to_goal(0.85, -0.2995, 0.1)
         print("opening")
         right_gripper.open()
         rospy.sleep(1.)
         print("executing")
-    	move_to_goal(0.85, -0.301, -0.044)
+    	move_to_goal(0.85, -0.2995, -0.041)
         print("closings")
         right_gripper.close()
+        print("MISSED: ", right_gripper.missed())
+        print("FORCEEE: ", right_gripper.force())
         print("Done")
         # move_to_goal(0.4225 + 0.1, -0.1265, 0.7725 - 0.92)
         # right_gripper.close()

@@ -83,12 +83,12 @@ def main():
                 goal.pose.orientation.w = or_w
 
                 plan = planner.plan_to_pose(goal, orien_const)
-
+                print(plan.joint_trajectory.points[-1].positions)
                 raw_input("Press <Enter> to move the right arm to goal pose: ")
 
-                # Might have to edit this for part 5
-                if not planner.execute_plan(plan):
-                    raise Exception("Execution failed")
+                # # Might have to edit this for part 5
+                # if not planner.execute_plan(plan):
+                #     raise Exception("Execution failed")
             except Exception as e:
                 print e
                 traceback.print_exc()
@@ -115,7 +115,7 @@ def main():
         orient_const.absolute_y_axis_tolerance = 0.05
         orient_const.absolute_z_axis_tolerance = 0.05
         orient_const.weight
-        move_to_goal(0.4, -0.25, -0.1, orien_const=[orient_const])
+        move_to_goal(0.85, -0.3, 0.1, orien_const=[orient_const])
         print("Done 1")
         # move_to_goal(0.3, -0.1, 0.0)
         

@@ -50,7 +50,7 @@ def map_user_input():
         joint_command = {}
         for i in range(len(joint_names)):
             joint_command[joint_names[i]] = joint_angles[i]
-            limb.set_joint_velocities(joint_command)
+            limb.set_joint_positions(joint_command)
         return joint_command
 
     done = False
