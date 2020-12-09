@@ -8,6 +8,7 @@ from tf.transformations import quaternion_from_euler
 from scipy.spatial.transform import Rotation as R
 
 # for point_cloud_bounce_two_kinects.bag
+# and point_cloud_bounce_three_kinects.bag
 KINECT_POSES = [
 	[0.1, 0, 0.95, 0, -0.3, 0],
 	[2.6, 0.5, 0.9, 0, -0.35, -2.773],
