@@ -162,12 +162,14 @@ class PointcloudProcess:
     def __init__(self, num_kinects=3):
 
         self.NUM_KINECTS = num_kinects
+        self.seq = 1
 
         PTS_TOPICS = ['/camera/kinect%d/depth/points' % (i+1) for i in range(self.NUM_KINECTS)]
         CAM_INFO_TOPICS = ['/camera/kinect%d/color/camera_info' % (i+1) for i in range(self.NUM_KINECTS)]
         RGB_IMG_TOPICS = ['/camera/kinect%d/color/image_raw' % (i+1) for i in range(self.NUM_KINECTS)]
         FILTERED_IMG_TOPICS = ['/vision/pc/k%d_filtered_image' % (i+1) for i in range(self.NUM_KINECTS)]
         SEGMENTED_PC_PUB_TOPIC = '/vision/pc/segmented_points'
+        CENTROID_TOPIC = '/vision/pc/centroid'
 
         assert len(PTS_TOPICS) == self.NUM_KINECTS
         assert len(CAM_INFO_TOPICS) == self.NUM_KINECTS
@@ -199,9 +201,11 @@ class PointcloudProcess:
         self._bridge = CvBridge()
         self.listener = tf.TransformListener()
         
+        # Segmented point cloud, filtered images, centroid publishers
         self.segmented_pc_pub = rospy.Publisher(SEGMENTED_PC_PUB_TOPIC, PointCloud2, queue_size=10)
         self.filtered_pubs = [rospy.Publisher(FILTERED_IMG_TOPICS[i], Image, queue_size=10) for i in range(self.NUM_KINECTS)]
-        
+        self.centroid_pub = rospy.Publisher(CENTROID_TOPIC, PointStamped, queue_size=10)
+
         message = []
         for i in range(self.NUM_KINECTS):
             message.extend([self.pts_subs[i], self.img_subs[i], self.cam_info_subs[i]])
@@ -260,6 +264,7 @@ class PointcloudProcess:
         cumulative_world_pts = []
         cumulative_world_centroid = None
 
+        print(self.seq)
         for i in range(self.NUM_KINECTS):
             if pts[i] is not None and len(pts[i]):
                 pts[i] = isolate_object_of_interest(pts[i], imgs[i], infos[i],
@@ -278,6 +283,17 @@ class PointcloudProcess:
             world_points_msg = numpy_to_pc2_msg(cumulative_world_pts)
             self.segmented_pc_pub.publish(world_points_msg)
 
+            centroid_msg = PointStamped()
+            centroid_msg.header.seq = self.seq
+            centroid_msg.header.stamp = rospy.Time.now()
+            centroid_msg.header.frame_id = 'world'
+            centroid_msg.point.x = cumulative_world_centroid[0]
+            centroid_msg.point.y = cumulative_world_centroid[1]
+            centroid_msg.point.z = cumulative_world_centroid[2]
+            self.centroid_pub.publish(centroid_msg)
+
+        self.seq += 1
+        print("\n")
         print("\n")
 
 
