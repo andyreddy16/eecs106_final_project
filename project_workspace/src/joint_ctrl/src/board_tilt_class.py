@@ -59,6 +59,11 @@ class TiltController:
 		self.orien_const_right_vert = copy.deepcopy(self.orien_const_left_vert)
 		self.orien_const_right_vert.link_name = "right_gripper"
 
+		self.previous_deviation = (None, None)
+
+		self.pub = rospy.Publisher("board_controller_pub", std_msg)
+		rospy.Subscriber("")
+
 	def move_to_joint_positions(self, limb, positions, timeout=15.0, move_rate=0.98, threshold=settings.JOINT_ANGLE_TOLERANCE, test=None):
 		"""
 		(Blocking) Commands the limb to the provided positions.
@@ -139,10 +144,13 @@ class TiltController:
 	            traceback.print_exc()
 
 	def return_to_neutral(self):
-		print("Moving left arm to neutral pose: ")
-		self.execute_movement(self.left_arm, self.lj, NEUTRAL_JOINTS_LEFT)
-		print("Moving right arm to neutral pose: ")
-		self.execute_movement(self.right_arm, self.rj, NEUTRAL_JOINTS_RIGHT)
+		if self.previous_deviation == 'y_tilt':
+			print("Moving left arm to neutral pose: ")
+			self.execute_movement(self.left_arm, self.lj, NEUTRAL_JOINTS_LEFT)
+			print("Moving right arm to neutral pose: ")
+			self.execute_movement(self.right_arm, self.rj, NEUTRAL_JOINTS_RIGHT)
+		else:
+			self.tilt_along_x(0.0)
 
 	def tilt_along_y(self, target_angle):
 		curr_left_pos = self.left_arm.endpoint_pose()['position']
@@ -150,7 +158,7 @@ class TiltController:
 		left_x, left_y, left_z = curr_left_pos.x, curr_left_pos.y, curr_left_pos.z 
 		right_x, right_y, right_z = curr_right_pos.x, curr_right_pos.y, curr_right_pos.z
 
-		z_delta_magnitude = 0.5 * BOARD_LEN_Y * np.sin(target_angle)
+		z_delta_magnitude = abs(0.5 * BOARD_LEN_Y * np.sin(target_angle))
 		if target_angle > 0:
 			right_target_z = right_z + z_delta_magnitude
 			left_target_z = left_z - z_delta_magnitude
@@ -168,14 +176,16 @@ class TiltController:
 		print("Moving right arm")
 		self.execute_movement(self.right_arm, self.rj, right_target_joint_pos)
 
+		self.previous_deviation = ("y_tilt", None)
+
 
 	def tilt_along_x(self, target_angle_delta):
 		print("Tilting arms simultaneously along x")
 		left_curr = self.left_arm.joint_angles()
 		right_curr = self.right_arm.joint_angles()
 
-		left_delta = left_curr['left_w1'] - (NEUTRAL_JOINTS_LEFT['left_w1'] + target_angle_delta)
-		right_delta = right_curr['right_w1'] - (NEUTRAL_JOINTS_RIGHT['right_w1'] + target_angle_delta)
+		left_delta = (NEUTRAL_JOINTS_LEFT['left_w1'] + target_angle_delta) - left_curr['left_w1']
+		right_delta = (NEUTRAL_JOINTS_RIGHT['right_w1'] + target_angle_delta) - right_curr['right_w1']
 		left_sgn = 1 if left_delta > 0 else -1
 		right_sgn = 1 if right_delta > 0 else -1
 
@@ -194,6 +204,8 @@ class TiltController:
 		self.left_arm.set_joint_positions(left_curr)
 		self.right_arm.set_joint_positions(right_curr)
 
+		self.previous_deviation = ("x_tilt", target_angle_delta)
+
 
  	def close_grippers_simult(self):
 	 	self.rg.close()
@@ -202,12 +214,19 @@ class TiltController:
 
 
 
+def callback(message):
+	# implement what to call here
+
+
+def listener():
+	rospy.Subscriber("physics_inference_output", )
+
 def main():
 	tilt_controller = TiltController()
-	# tilt_controller.tilt_along_y(0.2)
-	tilt_controller.tilt_along_x(-0.3)
-	rospy.sleep(0.8)
-	tilt_controller.return_to_neutral()
+	# # tilt_controller.tilt_along_y(0.2)
+	# tilt_controller.tilt_along_x(-0.3)
+	# rospy.sleep(0.8)
+	# tilt_controller.return_to_neutral()
 
 if __name__ == '__main__':
 	rospy.init_node('BoardTiltingNode')
