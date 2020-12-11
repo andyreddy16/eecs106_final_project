@@ -60,7 +60,7 @@
       <visual name='visual'>
         <geometry>
           <mesh>
-            <uri>/home/michaelwan/.gazebo/models/kinect_ros_3_nc/meshes/kinect.dae</uri>
+            <uri>/home/akashvelu/.gazebo/models/kinect_ros_3_nc/meshes/kinect.dae</uri>
           </mesh>
         </geometry>
         <material>

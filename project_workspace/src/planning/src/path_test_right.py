@@ -115,7 +115,7 @@ def main():
         right_gripper.open()
         rospy.sleep(1.)
         print("executing")
-    	move_to_goal(0.85, -0.2995, -0.035) #-0.41
+    	move_to_goal(0.85, -0.2995, -0.030) #-0.41
         print("closings")
         # right_gripper.close()
         print("MISSED: ", right_gripper.missed())

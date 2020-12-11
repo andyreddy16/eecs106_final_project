@@ -6,6 +6,7 @@ import numpy as np
 import copy
 
 from geometry_msgs.msg import PointStamped, TwistStamped
+from std_msgs.msg import Bool
 
 
 class Kalman:
@@ -39,6 +40,7 @@ class Kalman:
         # ROS Integration
         rospy.init_node('obj_tracker', anonymous=True)
         self.pub = rospy.Publisher("/vision/pc/kf_centroid", TwistStamped, queue_size=50)
+        self.neutral_pub = rospy.Publisher("/control/neutral_set", Bool, queue_size=50)
         rospy.Subscriber("/vision/pc/centroid", PointStamped, self.track_cb)
 
         # Data Read
@@ -197,6 +199,12 @@ class Kalman:
             print("KF centroid: (%.3f, %.3f, %.3f, %.3f, %.3f, %.3f)" % (kf_centroid[0],
                 kf_centroid[1], kf_centroid[2], kf_centroid[3],
                 kf_centroid[4], kf_centroid[5]))
+
+            if len(self.objs[0]['kf_params']['x_m']) > 1:
+                measurements = self.objs[0]['kf_params']['x_m']
+                prev_vz, cur_vz = measurements[-2][5], measurements[-1][5]
+                if prev_vz <= 0 and cur_vz > 0:
+                    self.neutral_pub.publish(Bool(True))
 
 
     def track_cb(self, msg):

@@ -17,6 +17,7 @@ from path_planner import PathPlanner
 from baxter_interface import gripper as robot_gripper
 import baxter_dataflow
 from threading import Thread
+import std_msgs
 
 # define constants
 # grasp positions of end effectors
@@ -60,9 +61,12 @@ class TiltController:
 		self.orien_const_right_vert.link_name = "right_gripper"
 
 		self.previous_deviation = (None, None)
+		self.setting_to_neutral = False
+		self.tilt_after_neutral = False
 
-		self.pub = rospy.Publisher("board_controller_pub", std_msg)
-		rospy.Subscriber("")
+		self.pub = rospy.Publisher("board_controller_pub", std_msgs.msg.String)
+		rospy.Subscriber("/physics_inference", std_msgs.msg.String, self.tilt_listener)
+		rospy.Subscriber("/control/neutral_set", std_msgs.msg.Bool, self.return_to_neutral)
 
 	def move_to_joint_positions(self, limb, positions, timeout=15.0, move_rate=0.98, threshold=settings.JOINT_ANGLE_TOLERANCE, test=None):
 		"""
@@ -144,6 +148,7 @@ class TiltController:
 	            traceback.print_exc()
 
 	def return_to_neutral(self):
+		self.setting_to_neutral = True 
 		if self.previous_deviation == 'y_tilt':
 			print("Moving left arm to neutral pose: ")
 			self.execute_movement(self.left_arm, self.lj, NEUTRAL_JOINTS_LEFT)
@@ -151,6 +156,9 @@ class TiltController:
 			self.execute_movement(self.right_arm, self.rj, NEUTRAL_JOINTS_RIGHT)
 		else:
 			self.tilt_along_x(0.0)
+
+		self.setting_to_neutral = False
+		self.tilt_after_neutral = False
 
 	def tilt_along_y(self, target_angle):
 		curr_left_pos = self.left_arm.endpoint_pose()['position']
@@ -211,15 +219,17 @@ class TiltController:
 	 	self.rg.close()
 	 	self.lg.close()
 
+	def tilt_listener(self, msg):
+		if not self.setting_to_neutral and not self.tilt_after_neutral:
+			self.tilt_after_neutral = True 
+			angle, x_tilt = msg.split("_")
+			angle, x_tilt = float(angle), int(x_tilt)
 
+			if x_tilt:
+				self.tilt_along_x(angle)
+			else:
+				self.tilt_along_y(angle)
 
-
-def callback(message):
-	# implement what to call here
-
-
-def listener():
-	rospy.Subscriber("physics_inference_output", )
 
 def main():
 	tilt_controller = TiltController()

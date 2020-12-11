@@ -114,7 +114,7 @@ def main():
         left_gripper.open()
         rospy.sleep(1.)
         print("executing")
-        move_to_goal(0.85, 0.2995, -0.038) #-0.35
+        move_to_goal(0.85, 0.2995, -0.035) #-0.35
         print("closings")
         # left_gripper.close()
         print("FORCEEE: ", left_gripper.force())
