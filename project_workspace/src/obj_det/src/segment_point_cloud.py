@@ -65,18 +65,13 @@ def numpy_to_pc2_msg(points):
     data['b'] = 0
     return ros_numpy.msgify(PointCloud2, data, frame_id='world')
 
-def green_dominant_filter(image):
+def green_dominant_filter(image, coeff=1.5):
+    """Filter out pixels where G < coeff*B or G < coeff*R"""
     b,g,r = cv2.split(image)
-    target = g
-    other1 = b
-    other2 = r
-
-    # Figure out which ones we need to zero & zero them
-    should_zero = (target < 1.5*other1) | (target < 1.5*other2)
-    g[should_zero] = 0
-    r[should_zero] = 0
-    b[should_zero] = 0
-
+    zeroed_idxs = (g < coeff*b) | (g < coeff*r)
+    g[zeroed_idxs] = 0
+    r[zeroed_idxs] = 0
+    b[zeroed_idxs] = 0
     # Merge channels back
     return cv2.merge((b,g,r))
 
@@ -84,9 +79,6 @@ def filter(image, lower_thresh=(0, 60, 0), upper_thresh=(40, 255, 40)):
     """Only keep the green ball and filter everything else out"""
     image = green_dominant_filter(image)
     image_copy = np.copy(image)
-    # for i in range(3):
-    #     mask = ((image_copy[:,:,i] >= lower_thresh[i]).astype(int) * (image_copy[:,:,i] <= upper_thresh[i]).astype(int)).astype(bool)
-    #     image_copy[(1 - mask).astype(bool)] = 0
     return image_copy.astype(np.uint8)
 
 def segment_pointcloud(points, segmented_image, cam_mat, trans, rot):
