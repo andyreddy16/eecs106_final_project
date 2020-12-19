@@ -94,10 +94,9 @@ class PhysicsInference:
 		# print("Determining tilt")
 		col_point, col_vel, time_to_col = self.predict_collision_point(initial_position, initial_velocity,
 																	   current_board_z)
-		# if abs(col_point[0] - BOARD_CENTER_X) > abs(col_point[1] - BOARD_CENTER_Y):
-		if True:
+		if abs(col_point[0] - BOARD_CENTER_X) > abs(col_point[1] - BOARD_CENTER_Y):
 			twoD_velocity = np.array([col_vel[0], col_vel[2]])
-			correction_delta = col_point[0] - BOARD_CENTER_X  ## TODO: flip the order??
+			correction_delta = col_point[0] - BOARD_CENTER_X
 			tilt_along_x = 1
 			tilt_angle = -1 * self.get_board_tilt_angle(twoD_velocity, correction_delta)
 			print("Tilt along x with angle ", tilt_angle)
@@ -109,24 +108,15 @@ class PhysicsInference:
 			print("Tilt along y with angle ", tilt_angle)
 		message = str(float(tilt_angle)) + "_" + str(tilt_along_x)
 		self.pub.publish(message)
-		# return tilt_along_x
 
 	
 	def tracking_listener(self, msg):
 		twist = msg.twist
 		position = np.array([twist.linear.x, twist.linear.y, twist.linear.z])
 		velocity = np.array([twist.angular.x, twist.angular.y, twist.angular.z])
-		print("Position: ", position)
-		print("Velocity: ", velocity)
+		print("Current Position: ", position)
+		print("Current Velocity: ", velocity)
 
-		# left_arm =  baxter_interface.Limb('left')
-		# right_arm = baxter_interface.Limb('right')
-		# curr_left_pos = self.left_arm.endpoint_pose()['position']
-		# curr_right_pos = self.right_arm.endpoint_pose()['position']
-		# left_x, left_y, left_z = curr_left_pos.x, curr_left_pos.y, curr_left_pos.z
-		# right_x, right_y, right_z = curr_right_pos.x, curr_right_pos.y, curr_right_pos.z
-		# board_z = 0.5 * (right_z + left_z)
-		# print("Calling determine_tilt")
 		self.determine_tilt(position, velocity, BOARD_HEIGHT)
 
 

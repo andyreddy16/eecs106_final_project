@@ -1,0 +1,2 @@
+Vector3 centroid_pos
+Vector3 centroid_vel

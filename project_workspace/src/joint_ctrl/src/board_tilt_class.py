@@ -165,23 +165,19 @@ class TiltController:
 
 	def return_to_neutral(self):
 		self.setting_to_neutral = True 
-		# # if self.previous_deviation[0] == 'y_tilt' or self.previous_deviation[0] == None:
-		# # print("Moving left arm to neutral pose: ")
-		# # self.execute_movement(self.left_arm, self.lj, NEUTRAL_JOINTS_LEFT)
-		# # print("Moving right arm to neutral pose: ")
-		# # self.execute_movement(self.right_arm, self.rj, NEUTRAL_JOINTS_RIGHT)
-		# print("Moving right arm to neutral pose: ")
-		# self.execute_movement(self.right_arm, self.rj, self.right_joint_neutral)
-		# print("Moving left arm to neutral pose: ")
-		# rospy.sleep(0.1)
-		# self.execute_movement(self.left_arm, self.lj, self.left_joint_neutral)
+		if self.previous_deviation[0] == 'y_tilt' or self.previous_deviation[0] == None:
+			print("Moving right arm to neutral pose: ")
+			self.execute_movement(self.right_arm, self.rj, self.right_joint_neutral)
+			print("Moving left arm to neutral pose: ")
+			rospy.sleep(0.1)
+			self.execute_movement(self.left_arm, self.lj, self.left_joint_neutral)
 		
 
-		# # else:
-		self.tilt_along_x(0.0)
+		else:
+			self.tilt_along_x(0.0)
 
 		self.setting_to_neutral = False
-		# self.tilt_after_neutral = False
+		self.tilt_after_neutral = False
 
 	def tilt_along_y(self, target_angle):
 		# Positive angle = board faces +y dir, negative angle = board faces -y dir
@@ -190,7 +186,7 @@ class TiltController:
 		left_x, left_y, left_z = curr_left_pos.x, curr_left_pos.y, curr_left_pos.z 
 		right_x, right_y, right_z = curr_right_pos.x, curr_right_pos.y, curr_right_pos.z
 
-		z_delta_magnitude = 0.5*abs(0.5 * BOARD_LEN_Y * np.sin(target_angle))
+		z_delta_magnitude = abs(0.5 * BOARD_LEN_Y * np.sin(target_angle))
 		if target_angle > 0:
 			right_target_z = right_z + z_delta_magnitude
 			left_target_z = left_z - z_delta_magnitude
@@ -244,7 +240,7 @@ class TiltController:
 
  	def neutral_listener(self, msg):
  		print("Returning to neutral")
- 		# self.return_to_neutral()
+ 		self.return_to_neutral()
  		self.pub.publish("Return to neutral message processed.")
 
 
@@ -255,18 +251,16 @@ class TiltController:
 
 
 	def perform_tilt(self, msg):
-		# print("Tilt message: ", msg)
-		# print("Neutral flag, Tilt flag :", self.setting_to_neutral, self.tilt_after_neutral)
+		print("Tilt performing: ", msg)
 		if not self.setting_to_neutral and self.tilt_after_neutral: 
 			angle, x_tilt = msg.data.split("_")
 			angle, x_tilt = float(angle), int(x_tilt)
 			print("Actual tilt execution: ", msg)
-			angle = np.sign(angle) * max(abs(angle), UPPER_TILT_THRESH)
+			angle = np.sign(angle) * min(abs(angle), UPPER_TILT_THRESH)
 
-			if abs(angle) <= LOWER_TILT_THRESH and abs(angle) < 0:
+			if abs(angle) <= LOWER_TILT_THRESH:
 				self.tilt_after_neutral = False 
 			elif x_tilt:
-				print("Somehow executing x tilt")
 				self.tilt_along_x(angle)
 			else:
 				self.tilt_along_y(angle)
@@ -302,16 +296,6 @@ class TiltController:
 		print("Finish calibration")
 
 
-# def main():
-# 	tilt_controller = TiltController()
-# 	# tilt_controller.return_to_neutral()
-# 	tilt_controller.tilt_along_x(0.02)
-# 	rospy.sleep(0.1)
-# 	tilt_controller.tilt_along_x(-0.15)
-# 	# # tilt_controller.tilt_along_y(0.2)
-# 	# tilt_controller.tilt_along_x(-0.3)
-# 	# rospy.sleep(0.8)
-# 	# tilt_controller.return_to_neutral()
 def main():
     rospy.init_node('tilt_controller')
     process = TiltController()
