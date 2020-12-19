@@ -105,7 +105,7 @@ def main():
         right_gripper.set_moving_force(80.0)
         right_gripper.set_holding_force(80.0)
 
-        right_gripper.calibrate()
+        # right_gripper.calibrate()
         # Set your goal positions here
         print("starting")
         # move_to_goal(0.85, -0.3001, 0.1)
@@ -125,7 +125,8 @@ def main():
         # right_gripper.close()
         # move_to_goal(0.4225 + 0.1 + 0.05, -0.1265, 0.7725 - 0.92)
         # right_gripper.open()
-        raw_input("Press <Enter> to cycle through motion again")
+        break
+        # raw_input("Press <Enter> to cycle through motion again")
         
 
 if __name__ == '__main__':

@@ -8,6 +8,7 @@ import copy
 from geometry_msgs.msg import PointStamped, TwistStamped
 from std_msgs.msg import Bool
 
+ACCEL_Z = -0.1
 
 class Kalman:
     # Testing for simulation
@@ -35,12 +36,14 @@ class Kalman:
     kf_params['R'] = np.eye(3) # Observation Noise
     kf_params['P_m'] = [np.eye(6)] # Measured Variance
     kf_params['P_p'] = [None] # Predicted Variance
+    counter = 0
 
     def __init__(self, search_distance=10000, disappear_limit=100):
         # ROS Integration
-        rospy.init_node('obj_tracker', anonymous=True)
+        # rospy.init_node('obj_tracker', anonymous=True)
         self.pub = rospy.Publisher("/vision/pc/kf_centroid", TwistStamped, queue_size=50)
         self.neutral_pub = rospy.Publisher("/control/neutral_set", Bool, queue_size=50)
+        self.tilt_pub = rospy.Publisher("control/tilt_set", Bool, queue_size=50)
         rospy.Subscriber("/vision/pc/centroid", PointStamped, self.track_cb)
 
         # Data Read
@@ -62,7 +65,8 @@ class Kalman:
         # Removal Threshold (for disappeared objects)
         self.disappear_limit = disappear_limit
 
-        rospy.spin()
+
+        # rospy.spin()
 
 
     def set_search_distance(self, search_distance):
@@ -74,18 +78,18 @@ class Kalman:
 
 
     def set_base_Q_var(self, cov):
-        assert cov.shape == self.kf_params['Q'].shape
-        self.kf_params['Q'] = cov
+        assert cov.shape == Kalman.kf_params['Q'].shape
+        Kalman.kf_params['Q'] = cov
 
 
     def set_base_R_var(self, cov):
-        assert cov.shape == self.kf_params['R'].shape
-        self.kf_params['R'] = cov
+        assert cov.shape == Kalman.kf_params['R'].shape
+        Kalman.kf_params['R'] = cov
 
 
     def set_base_u_input(self, control):
-        assert control.shape == self.kf_params['u'].shape
-        self.kf_params['u'] = [control]
+        assert control.shape == Kalman.kf_params['u'][-1].shape
+        Kalman.kf_params['u'] = [control]
 
 
     def kf_predict(self, obj_id):
@@ -196,20 +200,27 @@ class Kalman:
             kf_centroid_msg.twist.angular.y = kf_centroid[4]
             kf_centroid_msg.twist.angular.z = kf_centroid[5]
             self.pub.publish(kf_centroid_msg)
+            print(Kalman.counter)
             print("KF centroid: (%.3f, %.3f, %.3f, %.3f, %.3f, %.3f)" % (kf_centroid[0],
                 kf_centroid[1], kf_centroid[2], kf_centroid[3],
                 kf_centroid[4], kf_centroid[5]))
 
-            if len(self.objs[0]['kf_params']['x_m']) > 1:
+            if len(self.objs[0]['kf_params']['x_m']) > 2:
                 measurements = self.objs[0]['kf_params']['x_m']
-                prev_vz, cur_vz = measurements[-2][5], measurements[-1][5]
-                if prev_vz <= 0 and cur_vz > 0:
+                prev_z, cur_z = measurements[-2][2], measurements[-1][2]
+                prev_prev_z = measurements[-3][2]
+                if cur_z <= 0.85 or (cur_z - prev_z > 0 and prev_z - prev_prev_z <= 0):
                     self.neutral_pub.publish(Bool(True))
-
+                    self.reset_kf()
+                    print("Reset KF")
+                if cur_z - prev_z < 0 and prev_z - prev_prev_z >= 0:
+                    self.tilt_pub.publish(Bool(True))
+            Kalman.counter += 1
 
     def track_cb(self, msg):
         if True:
             # Append info as dictionary format
+
             cent = np.array([msg.point.x, msg.point.y, msg.point.z])
             bbox = (np.array([0, 0, 0]), np.array([0, 0, 0]))
             obj_found = {'centroid': cent}
@@ -221,5 +232,30 @@ class Kalman:
             self.frame_id += 1
 
 
+    def reset_kf(self):
+        self.objs_found = []
+
+        # Frame information Bounds x(@z=2.7)=[-2.7, 2.7] y(@z=2.7)=[-1.6, 0.1] z=[0.15, 3]
+        self.frames = {} # stored as 'id': pointCloud
+        self.num_frames = 0
+        self.frame_id = 0
+
+        # Objects Tracking
+        self.objs = {} # stored as 'id': {'centroid': np.array({}), 'bounding_box': (coordinates), 'kf_params': {params}, 'startFrame': int x, 'frameCount': int y, 'consecutiveMisses': int z}
+        self.num_objs = 0
+        self.objs_id = 0
+
+
+def main():
+    rospy.init_node('obj_tracker', anonymous=True)
+    process = Kalman()
+
+    # Control input set to factor in constant acceleration
+    # process.set_base_u_input(np.array([0, 0, 0.5*ACCEL_Z*(1**2), 0, 0, ACCEL_Z*1]))
+
+
+    rospy.spin()
+
+
 if __name__ == '__main__':
-    main = Kalman()
+    main()

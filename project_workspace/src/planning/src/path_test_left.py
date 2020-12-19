@@ -123,7 +123,8 @@ def main():
         # right_gripper.close()
         # move_to_goal(0.4225 + 0.1 + 0.05, -0.1265, 0.7725 - 0.92)
         # right_gripper.open()
-        raw_input("Press <Enter> to cycle through motion again")
+        break
+        # raw_input("Press <Enter> to cycle through motion again")
         
 
 if __name__ == '__main__':

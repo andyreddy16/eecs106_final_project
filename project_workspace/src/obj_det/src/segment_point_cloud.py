@@ -138,8 +138,8 @@ def isolate_object_of_interest(points, img, cam_mat, depth_to_img_raw, vis=False
     depth_to_raw_R = depth_to_img_raw[:3, :3]
     depth_to_raw_T = depth_to_img_raw[:3, 3].flatten()
     segmented_img = filter(img, lower_thresh=FILTER_PRESETS[filter_preset_id][0], upper_thresh=FILTER_PRESETS[filter_preset_id][1])
-    if vis and pub:
-        pub.publish(ros_numpy.msgify(Image, segmented_img, 'rgb8'))
+    # if vis and pub:
+    #     pub.publish(ros_numpy.msgify(Image, segmented_img, 'rgb8'))
     points = segment_pointcloud(points, segmented_img, cam_mat, depth_to_raw_T, depth_to_raw_R)    
     if points is None or len(points) == 0:
         return None
@@ -273,7 +273,7 @@ class PointcloudProcess:
             print("Cumulative centroid: (%.3f, %.3f, %.3f)" % (cumulative_world_centroid[0],
                 cumulative_world_centroid[1], cumulative_world_centroid[2]))
             world_points_msg = numpy_to_pc2_msg(cumulative_world_pts)
-            self.segmented_pc_pub.publish(world_points_msg)
+            # self.segmented_pc_pub.publish(world_points_msg)
 
             centroid_msg = PointStamped()
             centroid_msg.header.seq = self.seq
